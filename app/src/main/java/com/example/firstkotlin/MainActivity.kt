@@ -5,13 +5,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.firstkotlin.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.counter = getString(R.string.counter)
+        binding.setToastButton(getString(R.string.toastButton))
+        binding.setCountButton(getString(R.string.countButton))
+        binding.setRandomButton(getString(R.string.randomButton))
     }
 
     fun toastMe(view : View) {

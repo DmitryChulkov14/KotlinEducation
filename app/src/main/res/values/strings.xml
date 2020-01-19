@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FirstKotlin</string>
-    <string name="hello_world_text">0</string>
+    <string name="counter">0</string>
+    <string name="toastButton">Toast</string>
+    <string name="countButton">Count</string>
+    <string name="randomButton">Random</string>
     <string name="random_heading">Это случайное число между 0 и %1d</string>
 </resources>
