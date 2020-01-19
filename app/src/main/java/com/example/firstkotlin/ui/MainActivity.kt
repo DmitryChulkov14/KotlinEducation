@@ -1,43 +1,39 @@
-package com.example.firstkotlin
+package com.example.firstkotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import com.example.firstkotlin.R
+import com.example.firstkotlin.data.SimpleViewModel
 import com.example.firstkotlin.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val viewModel by lazy { ViewModelProviders.of(this).get(SimpleViewModel::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        var binding: ActivityMainBinding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
 
-        binding.counter = getString(R.string.counter)
-        binding.setToastButton(getString(R.string.toastButton))
-        binding.setCountButton(getString(R.string.countButton))
-        binding.setRandomButton(getString(R.string.randomButton))
+        binding.lifecycleOwner = this
+
+        binding.viewModel = viewModel
     }
 
-    fun toastMe(view : View) {
+    fun toastMe() {
         val myToast = Toast.makeText(this, "Hello, Toast!", Toast.LENGTH_SHORT)
 
         myToast.show()
     }
 
-    fun countMe(view : View) {
-        val countString = textView.text.toString()
-
-        var count: Int = Integer.parseInt(countString)
-        count++
-
-        textView.text = count.toString()
-    }
-
-    fun randomMe (view : View) {
+    fun randomMe () {
         val randomIntent = Intent(this, SecondActivity::class.java)
 
         val countString = textView.text.toString()

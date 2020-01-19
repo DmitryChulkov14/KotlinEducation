@@ -6,20 +6,8 @@
     <data>
 
         <variable
-            name="counter"
-            type="String" />
-
-        <variable
-            name="toastButton"
-            type="String" />
-
-        <variable
-            name="countButton"
-            type="String" />
-
-        <variable
-            name="randomButton"
-            type="String" />
+            name="viewModel"
+            type="com.example.firstkotlin.data.SimpleViewModel" />
 
     </data>
 
@@ -27,14 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="@{counter}"
+            android:text="@{Integer.toString(viewModel.counter)}"
             android:textColor="@android:color/white"
             android:textSize="72sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,18 +38,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:background="@color/colorBackground"
-            android:text="@{toastButton}"
+            android:text="@{viewModel.toastButton}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
-            android:onClick="countMe"
+            android:onClick="@{() -> viewModel.countMe()}"
             android:id="@+id/count_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorBackground"
-            android:text="@{countButton}"
+            android:text="@{viewModel.countButton}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/random_button"
             app:layout_constraintStart_toEndOf="@+id/toast_button"
@@ -74,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:background="@color/colorBackground"
-            android:text="@{randomButton}"
+            android:text="@{viewModel.randomButton}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
